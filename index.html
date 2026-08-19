@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdGuard Security Suite — Ad Blocker, Privacy & Antivirus Protection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #68bc71;
+            --primary-dark-green: #4ea858;
+            --dark-forest: #1b2a26;
+            --slate-bg: #0f172a;
+            --card-bg: #ffffff;
+            --light-bg: #f7faf8;
+            --border-color: #e2e8f0;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --accent-blue: #0ea5e9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Announcement */
+        .top-banner {
+            background-color: var(--dark-forest);
+            color: #d1fae5;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .top-banner a {
+            color: var(--primary-green);
+            text-decoration: underline;
+            margin-left: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 8%;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark-forest);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark-green);
+        }
+
+        .btn-green {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-green:hover {
+            background-color: var(--primary-dark-green);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4.5rem 8%;
+            background: radial-gradient(circle at 80% 20%, rgba(104, 188, 113, 0.15) 0%, transparent 60%), #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-left {
+            flex: 1.2;
+            max-width: 620px;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e8f7ea;
+            color: #2e7d32;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-left h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            color: var(--dark-forest);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-left p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid #cbd5e1;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+        }
+
+        /* Hero Dashboard Card Mockup */
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .shield-dashboard {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            padding: 2rem;
+        }
+
+        .shield-status {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .status-icon-glow {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: #e8f7ea;
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-item .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark-forest);
+        }
+
+        .stat-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-forest);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            background: #e8f7ea;
+            color: var(--primary-dark-green);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-forest);
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Multiplatform Banner */
+        .platforms-section {
+            background: var(--slate-bg);
+            color: white;
+            text-align: center;
+            padding: 4rem 8%;
+        }
+
+        .platforms-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .platforms-section p {
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+        }
+
+        .platform-icons {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .platform-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .platform-box i {
+            font-size: 2.4rem;
+            color: var(--primary-green);
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-green);
+            box-shadow: 0 10px 30px rgba(104, 188, 113, 0.15);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-green);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.3rem;
+            color: var(--dark-forest);
+            margin-bottom: 0.3rem;
+        }
+
+        .pricing-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-forest);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+        }
+
+        .pricing-features li i {
+            color: var(--primary-green);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 4rem 8% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col ul li a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #1f2937;
+            padding-top: 2rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-cta-group {
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Notification -->
+    <div class="top-banner">
+        <span>🛡️ New version release: Advanced Phishing Engine & Encrypted DNS 3.0</span>
+        <a href="#features">See what's new &rarr;</a>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-shield"></i></div>
+            <span>AdGuard<span style="color: var(--primary-green);">Security</span></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#platforms">Platforms</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#pricing" class="btn-green">Download Free Trial</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="badge-pill"><i class="fa-solid fa-check"></i> System Shield Active</div>
+            <h1>Total Ad-Blocking, Malware Defense & Data Privacy</h1>
+            <p>Block annoying ads, stop hidden web trackers, and protect your computer from fraudulent websites, spyware, and ransomware before they execute.</p>
+            <div class="hero-cta-group">
+                <a href="#pricing" class="btn-green"><i class="fa-solid fa-download"></i> Get Protection</a>
+                <a href="#features" class="btn-outline">Explore Security Modules</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="shield-dashboard">
+                <div class="shield-status">
+                    <div class="status-icon-glow">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 style="color: var(--dark-forest); margin-bottom: 4px;">Protection Enabled</h3>
+                    <p style="font-size: 0.85rem; color: #16a34a; font-weight: 600;">System is safe & filtered</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="num">14,280</div>
+                        <div class="label">Ads Blocked</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">3,120</div>
+                        <div class="label">Trackers Stopped</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">48</div>
+                        <div class="label">Threats Quarantined</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">450 MB</div>
+                        <div class="label">Bandwidth Saved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="section-header section-title">
+            <h2>Complete Multi-Tier Protection</h2>
+            <p>Engineered to deliver clean browsing, hardened system safety, and absolute privacy across every web request.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-ban"></i></div>
+                <h3>System-Wide Ad Blocking</h3>
+                <p>Eliminates video pre-rolls, banner ads, and intrusive pop-ups across all web browsers and desktop applications.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+                <h3>Anti-Tracking & Stealth Mode</h3>
+                <p>Blocks tracking cookies, masks digital fingerprinting markers, and hides your IP data from analytical aggregators.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-virus-slash"></i></div>
+                <h3>Malware & Phishing Defense</h3>
+                <p>Cross-checks domains against continuously updated threat databases to prevent malicious downloads and credential-stealing lures.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>DNS-over-HTTPS Filtering</h3>
+                <p>Encrypts your domain queries to prevent ISP surveillance, DNS spoofing, and ISP-level redirection attacks.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-child"></i></div>
+                <h3>Parental Control</h3>
+                <p>Restricts access to age-inappropriate websites and prevents accidental downloads of executable files.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>High-Speed Performance</h3>
+                <p>Lightweight filtering core optimizes page load times and cuts cellular and home broadband traffic consumption.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Support Section -->
+    <section class="platforms-section" id="platforms">
+        <h2>Protect All Your Devices Seamlessly</h2>
+        <p>A single license works across all major desktop and mobile operating platforms.</p>
+        
+        <div class="platform-icons">
+            <div class="platform-box">
+                <i class="fa-brands fa-windows"></i>
+                <span>Windows 10 / 11</span>
+            </div>
+            <div class="platform-box">
+                <i class="fa-brands fa-apple"></i>
+                <span>macOS</span>
+            </div>
+            <div class="platform-box">
+                <i class="fa-brands fa-android"></i>
+                <span>Android</span>
+            </div>
+            <div class="platform-box">
+                <i class="fa-brands fa-app-store-ios"></i>
+                <span>iOS / iPadOS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+        <div class="section-title">
+            <h2>Flexible Protection Plans</h2>
+            <p>Choose the plan that fits your security and device requirements.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Personal -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Personal Plan</h3>
+                    <p>Ideal for individual users</p>
+                </div>
+                <div class="pricing-price">$2.49 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> Protects up to 3 Devices</li>
+                    <li><i class="fa-solid fa-check"></i> Full Ad & Banner Blocking</li>
+                    <li><i class="fa-solid fa-check"></i> Anti-Phishing & Malware Guard</li>
+                    <li><i class="fa-solid fa-check"></i> Encrypted DNS Profiles</li>
+                </ul>
+                <button class="btn-green" style="justify-content: center; width: 100%;">Select Personal</button>
+            </div>
+
+            <!-- Family / Popular -->
+            <div class="pricing-card popular">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-header">
+                    <h3>Family Suite</h3>
+                    <p>Complete coverage for households</p>
+                </div>
+                <div class="pricing-price">$5.49 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> Protects up to 9 Devices</li>
+                    <li><i class="fa-solid fa-check"></i> Real-time Zero-Day Protection</li>
+                    <li><i class="fa-solid fa-check"></i> Advanced Parental Controls</li>
+                    <li><i class="fa-solid fa-check"></i> Custom DNS Rules & Whitelists</li>
+                    <li><i class="fa-solid fa-check"></i> Priority 24/7 Support</li>
+                </ul>
+                <button class="btn-green" style="justify-content: center; width: 100%;">Get Family Suite</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>AdGuard Security</h4>
+                <p style="font-size: 0.9rem;">Building world-class ad blocking, DNS filtering, and anti-malware tools to preserve user autonomy and digital privacy.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Software</h4>
+                <ul>
+                    <li><a href="#">AdGuard for Windows</a></li>
+                    <li><a href="#">AdGuard for Mac</a></li>
+                    <li><a href="#">AdGuard for Android</a></li>
+                    <li><a href="#">Browser Extensions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Knowledge Base</a></li>
+                    <li><a href="#">Filter Lists</a></li>
+                    <li><a href="#">Release Notes</a></li>
+                    <li><a href="#">Community Forum</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 AdGuard Security Concept Page. Built for interface demonstration and educational design.
+        </div>
+    </footer>
+
+</body>
+</html>
